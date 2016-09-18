@@ -87,19 +87,6 @@
 
 	  _createClass(Cards, [{
 	    key: 'render',
-
-
-	    // constructor(){
-	    //   super();
-	    //   this.state = {
-	    //     cards: [
-	    //       "My Card1",
-	    //       "My Card2",
-	    //       "My Card3"
-	    //     ]
-	    //   }
-	    // }
-
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
@@ -165,6 +152,7 @@
 	    key: 'createCard',
 	    value: function createCard() {
 	      console.log(this.refs.cardText.value);
+	      this.props.addNewCard(this.refs.cardText.value);
 	    }
 	  }, {
 	    key: 'render',
@@ -190,33 +178,34 @@
 	var App = function (_React$Component4) {
 	  _inherits(App, _React$Component4);
 
-	  // constructor(){
-	  //   super();
-	  //   this.createCard = this.createCard.bind(this);
-	  // }
-
 	  function App() {
 	    _classCallCheck(this, App);
 
 	    var _this4 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
 	    _this4.state = {
-	      cards: ["My Card12", "My Card2", "My Card3"]
+	      cards: ["My Card1", "My Card2", "My Card3"]
 	    };
+
+	    self = _this4;
 	    return _this4;
 	  }
 
-	  // addNewCard(){
-	  //   console.log(this.refs.cardText.value);
-	  // }
-
 	  _createClass(App, [{
+	    key: 'addNewCard',
+	    value: function addNewCard(cardText) {
+	      console.log('addNewCard', cardText);
+	      var cards = self.state.cards;
+	      cards.push(cardText);
+	      self.setState({ cards: cards });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(NewCard, null),
+	        _react2.default.createElement(NewCard, { addNewCard: this.addNewCard }),
 	        _react2.default.createElement(Cards, { cards: this.state.cards })
 	      );
 	    }

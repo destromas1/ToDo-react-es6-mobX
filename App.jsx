@@ -4,18 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Cards extends React.Component {
-
-  // constructor(){
-  //   super();
-  //   this.state = {
-  //     cards: [
-  //       "My Card1",
-  //       "My Card2",
-  //       "My Card3"
-  //     ]
-  //   }
-  // }
-
+  
   render(){
     return(
       <div>
@@ -48,6 +37,7 @@ class NewCard extends React.Component {
 
   createCard(){
     console.log(this.refs.cardText.value);
+    this.props.addNewCard(this.refs.cardText.value);
   }
 
   render() {
@@ -62,30 +52,31 @@ class NewCard extends React.Component {
 
 class App extends React.Component {
 
-  // constructor(){
-  //   super();
-  //   this.createCard = this.createCard.bind(this);
-  // }
-
   constructor(){
     super();
+
     this.state = {
       cards: [
         "My Card1",
         "My Card2",
         "My Card3"
       ]
-    }
+    };
+
+    self = this;
   }
 
-  // addNewCard(){
-  //   console.log(this.refs.cardText.value);
-  // }
+  addNewCard(cardText){
+    console.log('addNewCard' , cardText);
+    var cards = self.state.cards;
+    cards.push(cardText);
+    self.setState({cards : cards });
+  }
 
   render() {
     return(
       <div>
-        <NewCard/>
+        <NewCard addNewCard={this.addNewCard}/>
         <Cards cards={this.state.cards}/>
       </div>
     )
