@@ -82,21 +82,29 @@
 	  function Cards() {
 	    _classCallCheck(this, Cards);
 
-	    var _this = _possibleConstructorReturn(this, (Cards.__proto__ || Object.getPrototypeOf(Cards)).call(this));
-
-	    _this.state = {
-	      cards: ["My Card1", "My Card2", "My Card3"]
-	    };
-	    return _this;
+	    return _possibleConstructorReturn(this, (Cards.__proto__ || Object.getPrototypeOf(Cards)).apply(this, arguments));
 	  }
 
 	  _createClass(Cards, [{
 	    key: 'render',
+
+
+	    // constructor(){
+	    //   super();
+	    //   this.state = {
+	    //     cards: [
+	    //       "My Card1",
+	    //       "My Card2",
+	    //       "My Card3"
+	    //     ]
+	    //   }
+	    // }
+
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        this.state.cards.map(function (item, i) {
+	        this.props.cards.map(function (item, i) {
 	          return _react2.default.createElement(
 	            Card,
 	            { key: i },
@@ -139,7 +147,87 @@
 	  return Card;
 	}(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(Cards, null), document.getElementById('app'));
+	;
+
+	var NewCard = function (_React$Component3) {
+	  _inherits(NewCard, _React$Component3);
+
+	  function NewCard() {
+	    _classCallCheck(this, NewCard);
+
+	    var _this3 = _possibleConstructorReturn(this, (NewCard.__proto__ || Object.getPrototypeOf(NewCard)).call(this));
+
+	    _this3.createCard = _this3.createCard.bind(_this3);
+	    return _this3;
+	  }
+
+	  _createClass(NewCard, [{
+	    key: 'createCard',
+	    value: function createCard() {
+	      console.log(this.refs.cardText.value);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement('input', { ref: 'cardText', type: 'text' }),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.createCard },
+	          'Create'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return NewCard;
+	}(_react2.default.Component);
+
+	;
+
+	var App = function (_React$Component4) {
+	  _inherits(App, _React$Component4);
+
+	  // constructor(){
+	  //   super();
+	  //   this.createCard = this.createCard.bind(this);
+	  // }
+
+	  function App() {
+	    _classCallCheck(this, App);
+
+	    var _this4 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+	    _this4.state = {
+	      cards: ["My Card12", "My Card2", "My Card3"]
+	    };
+	    return _this4;
+	  }
+
+	  // addNewCard(){
+	  //   console.log(this.refs.cardText.value);
+	  // }
+
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(NewCard, null),
+	        _react2.default.createElement(Cards, { cards: this.state.cards })
+	      );
+	    }
+	  }]);
+
+	  return App;
+	}(_react2.default.Component);
+
+	;
+
+	_reactDom2.default.render(_react2.default.createElement(App, null), document.getElementById('app'));
 
 /***/ },
 /* 2 */
