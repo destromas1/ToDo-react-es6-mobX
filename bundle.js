@@ -96,16 +96,13 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(
-	          Card,
-	          null,
-	          'My Card1'
-	        ),
-	        _react2.default.createElement(
-	          Card,
-	          null,
-	          'My Card2'
-	        )
+	        this.state.cards.map(function (item, i) {
+	          return _react2.default.createElement(
+	            Card,
+	            { key: i },
+	            item
+	          );
+	        })
 	      );
 	    }
 	  }]);
@@ -131,7 +128,7 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'h1',
+	          'h3',
 	          null,
 	          this.props.children
 	        )

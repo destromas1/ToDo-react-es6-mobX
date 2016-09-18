@@ -17,19 +17,25 @@ class Cards extends React.Component {
   }
 
   render(){
-    return  <div>
-          		<Card>My Card1</Card>
-          		<Card>My Card2</Card>
-            </div>
+    return(
+      <div>
+        {
+          this.state.cards.map(function(item, i){
+            return <Card key={i}>{item}</Card> ;
+          })
+        }
+      </div>
+    )
   }
-  
 };
 
 class Card extends React.Component {
   render() {
-    return  <div>
-              <h1>{this.props.children}</h1>
-            </div>
+    return(
+      <div>
+        <h3>{this.props.children}</h3>
+      </div>
+    )
 	}
 }
 
