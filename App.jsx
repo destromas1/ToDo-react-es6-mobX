@@ -28,7 +28,7 @@ class Card extends React.Component {
         <h3>{this.props.children}</h3>
       </div>
     )
-	}
+  }
 };
 
 class NewCard extends React.Component {
@@ -50,11 +50,11 @@ class NewCard extends React.Component {
         <button onClick={this.createCard}>Create</button>
       </div>
     )
-	}
+  }
 };
 
 class AppStore {
-  
+
   @observable cards = [
     "My Card1",
     "My Card2",
@@ -70,9 +70,9 @@ class AppStore {
 const store = new AppStore();
 
 class App extends React.Component {
-  
+
   constructor() {
-    super();    
+    super();
     self = this;
   }
 
@@ -83,10 +83,9 @@ class App extends React.Component {
         <Cards cards={store.cards}/>
       </div>
     )
-	}
+  }
 };
 
 ReactDOM.render(
   <App/>
   , document.getElementById('app'));
-
