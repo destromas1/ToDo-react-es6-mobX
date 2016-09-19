@@ -53,7 +53,21 @@ class NewCard extends React.Component {
 	}
 };
 
+class AppStore {
+  
+  @observable cards = [
+    "My Card1",
+    "My Card2",
+    "My Card3"
+  ];
 
+  addNewCard(cardText) {
+    console.log("AppStore.addNewCard" , cardText);
+    this.cards.push(cardText);
+  }
+}
+
+const store = new AppStore();
 
 class App extends React.Component {
   
