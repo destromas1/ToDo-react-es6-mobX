@@ -2,9 +2,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
+@observer
 class Cards extends React.Component {
-  
+
   render(){
     return(
       <div>
@@ -37,7 +40,7 @@ class NewCard extends React.Component {
 
   createCard(){
     console.log(this.refs.cardText.value);
-    this.props.addNewCard(this.refs.cardText.value);
+    this.props.store.addNewCard(this.refs.cardText.value);
   }
 
   render() {
@@ -50,34 +53,20 @@ class NewCard extends React.Component {
 	}
 };
 
+
+
 class App extends React.Component {
-
-  constructor(){
-    super();
-
-    this.state = {
-      cards: [
-        "My Card1",
-        "My Card2",
-        "My Card3"
-      ]
-    };
-
+  
+  constructor() {
+    super();    
     self = this;
-  }
-
-  addNewCard(cardText){
-    console.log('addNewCard' , cardText);
-    var cards = self.state.cards;
-    cards.push(cardText);
-    self.setState({cards : cards });
   }
 
   render() {
     return(
       <div>
-        <NewCard addNewCard={this.addNewCard}/>
-        <Cards cards={this.state.cards}/>
+        <NewCard store={store}/>
+        <Cards cards={store.cards}/>
       </div>
     )
 	}
@@ -85,4 +74,5 @@ class App extends React.Component {
 
 ReactDOM.render(
   <App/>
-	, document.getElementById('app'));
+  , document.getElementById('app'));
+
