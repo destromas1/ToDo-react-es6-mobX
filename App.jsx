@@ -2,56 +2,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { observer } from 'mobx-react';
+import { Cards, Card } from './Cards.jsx';
+import NewCard from './NewCard.jsx';
 import store from './appStore';
 
-@observer
-class Cards extends React.Component {
 
-  render(){
-    return(
-      <div>
-        {
-          this.props.cards.map(function(item, i){
-            return <Card key={i}>{item}</Card> ;
-          })
-        }
-      </div>
-    )
-  }
-};
-
-class Card extends React.Component {
-  render() {
-    return(
-      <div>
-        <h3>{this.props.children}</h3>
-      </div>
-    )
-  }
-};
-
-class NewCard extends React.Component {
-
-  constructor(){
-    super();
-    this.createCard = this.createCard.bind(this);
-  }
-
-  createCard(){
-    console.log(this.refs.cardText.value);
-    this.props.store.addNewCard(this.refs.cardText.value);
-  }
-
-  render() {
-    return(
-      <div>
-        <input ref="cardText" type="text"></input>
-        <button onClick={this.createCard}>Create</button>
-      </div>
-    )
-  }
-};
 
 class App extends React.Component {
 
